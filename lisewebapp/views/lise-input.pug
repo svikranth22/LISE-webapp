@@ -1,0 +1,10 @@
+html
+  head
+    title= 'Lise Webapp'
+  body
+    h1= 'Welcome to LISE'
+    form(action='/input', method='GET')
+        p Choose a file to upload or enter PDB ID.
+        input(type='file', accept='.pdp' name='file')
+        input(type='text', name='id')
+        input(type='submit', value='Submit')
