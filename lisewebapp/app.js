@@ -1,6 +1,6 @@
 const express = require('express')
 const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: 'tmp/' })
 const ip = require('ip')
 const ipAddress = ip.address()
 const port = 3000
