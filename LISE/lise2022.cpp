@@ -54,6 +54,7 @@ int main()
 		ifs.close();
 	}
 	cout << nl << " lines\n";
+	//return EXIT_SUCCESS;
 	vector<float> hx; //x coordinates
 	vector<float> hy; //y coordinates
 	vector<float> hz; //z coordinates
