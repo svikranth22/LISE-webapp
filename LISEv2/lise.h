@@ -1,5 +1,5 @@
-#ifndef LISESTRUCTS_H
-#define LISESTRUCTS_H
+#ifndef LISE_H
+#define LISE_H
 
 #include <stdio.h>
 #include <string.h>
@@ -7,6 +7,10 @@
 #include <sys/time.h>
 #include <stdlib.h>
 #include <math.h>
+
+#include "atom.h"
+#include "ipro.h"
+#include "grid.h"
 
 const float ot = 2.7; //occupied grid threshold
 const float st = 5.5; //sphere threshold
@@ -17,50 +21,6 @@ const float w = 2;
 const float bw2 = 8.25; //two sphere overlap threshold
 const float MIN = 1000;
 const float MAX = -1000;
-
-typedef struct ATOM {
-	char* aa; //amino acid name-3 letter
-	int rno; //residue serial number
-	char* nom; //atom name
-	float x; //x coordinates
-	float y; //y coordinates
-	float z; //z coordinates
-	float r; //r radius
-	int at; // atom type
-}ATOM;
-
-typedef struct STAT {
-	int min;
-	int max;
-	int range;
-}STAT;
-
-
-typedef struct IPRO {
-	int num;
-
-	ATOM *atoms;
-
-	STAT X;
-	STAT Y;
-	STAT Z;
-
-	int **dists;
-}IPRO;
-
-typedef struct Grids {
-	char ***occ; //grid occupied
-	float ***score; //grid score
-	float ***ss;	//shpere score
-} Grids;
-
-
-typedef struct ILIG {
-	int len;
-	float* x; //x coordinates
-	float* y; //y coordinates
-	float* z; //z coordinates
-}ILIG;
 
 float Fb[14][14][14] =
 	{ {{   0.932,   0.349,   1.282,   0.603,   1.586,   0.000,   0.916,   1.419,   0.608,   0.723,   0.563,   1.594,   1.002,   0.892},
@@ -259,5 +219,15 @@ float Fb[14][14][14] =
 		{   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000},
 		{   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000},
 		{   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   0.000,   3.428}} };
+
+
+
+typedef struct ILIG {
+	int len;
+	float* x; //x coordinates
+	float* y; //y coordinates
+	float* z; //z coordinates
+}ILIG;
+
 
 #endif
