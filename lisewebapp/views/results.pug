@@ -1,0 +1,22 @@
+html 
+    
+    head
+
+        title = `Results page`
+
+        script( type='text/javascript' src='jmol-14.32.53/jsmol/JSmol.min.js' )
+        script( type='text/javascript' src='jmol-14.32.53/jsmol/js/Jmol2.js' )
+        link( rel='stylesheet' href='css/app.css')
+        script. 
+            jmolInitialize('jmol-14.32.53/jsmol');
+
+    body 
+
+        div(id="title")
+            h1 results page
+
+        div()
+            script.
+                //console.log(`${#pdb_file}`);
+                jmolApplet(400, `load results/1a6w_top11.pdb`, 0);
+        

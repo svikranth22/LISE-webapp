@@ -7,12 +7,13 @@
 #include <iomanip>
 #include <stdio.h>      /* printf */
 #include <math.h>       /* sqrt */
+#include <string>
 //#include <filesystem>
 
 using namespace std;
 //using std::filesystem::current_path;
 
-int main()
+int main(int argc, char * argv[])
 {
 	vector<string> aa; //amino acid name-3 letter
 	vector<string> nom; //atom name
@@ -24,7 +25,17 @@ int main()
 	vector<float> r; //r radius
 	vector<int> at; // atom type
 	//std::vector<float> x; //x coordinates
-	ifstream ifs("./tmp/1a6w_ipro.txt", ios::in);
+
+	string pdb_id;
+	if (argc == 2) {
+		pdb_id = string(argv[1]);
+	} else {
+		pdb_id = "1a6w";
+	}
+
+	const string file_ipro ="./tmp/" + pdb_id + "_ipro.txt";
+
+	ifstream ifs(file_ipro, ios::in);
 	int nl = 0; //nof lines
 	if (!ifs.is_open()) {
 		cout << "Failed to open file.\n";
@@ -58,7 +69,8 @@ int main()
 	vector<float> hy; //y coordinates
 	vector<float> hz; //z coordinates
 	//std::vector<float> x; //x coordinates
-	ifstream ifs1("./tmp/1a6w_ilig.txt", ios::in);
+	const string file_iling = "./tmp/" + pdb_id + "_ilig.txt";
+	ifstream ifs1(file_iling, ios::in);
 	int nh = 0; //nof lines
 	if (!ifs1.is_open()) {
 		cout << "Failed to open file.\n";
@@ -508,7 +520,8 @@ int main()
 	float record[rank];
 	int lx[rank], ly[rank], lz[rank];
 	bool success[rank];
-	ofstream ofs("./results/1a6w_top10.pdb", ios::out);
+	const string file_top10 = "./results/" + string(argv[1]) + "_top10.pdb";
+	ofstream ofs(file_top10, ios::out);
 	for (int l = 0; l < rank; l++)
 	{
 		record[l] = 0;
@@ -549,7 +562,7 @@ int main()
 		/*successful or not*/
 		success[l] = false;
 		float shortest = 100;
-		for (int i = 0; i < nh; i++)//while (!feof(fpin))
+		for (int i = 0; i < nh; i++) //while (!feof(fpin))
 		{
 			cout << i << ' ' << hx[i] << ' ' << hy[i] << ' ' << hz[i] << endl;
 			tmp3 = sqrt(pow(hx[i] - (float)lx[l], 2) + pow(hy[i] - (float)ly[l], 2) + pow(hz[i] - (float)lz[l], 2));
@@ -560,7 +573,8 @@ int main()
 		ofs << "HETATM" << setw(5) << l << setw(12) << " MN    MN    " << setw(2) << l << "  " << "  " << setw(4) << lx[l] << ".000" << setw(4) << ly[l] << ".000" << setw(4) << lz[l] << ".000" << setw(6) << "1.00" << setw(3) << (int)success[l] * 100 << ".00" << endl;
 	}
 	ofs.close();
-	ofstream of1("./details/1a6w_top3.pdb", ios::out);
+	const string file_top3 = "./details/" + string(argv[1]) + "_top3.pdb";
+	ofstream of1(file_top3, ios::out);
 	int noa = 1;
 	for (int l = 0; l < 3; l++)
 	{
