@@ -535,7 +535,6 @@ def process_pdb(h, case):
 
     print(np, nl)
     fo.seek(0)
-    s = "Number of pro atoms: " + str(np) + "\n"
     fo.write(s)
     fo.close()
 
