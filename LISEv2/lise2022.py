@@ -7,7 +7,6 @@
 import os
 
 import re
-import sys
 
 
 def make_dir(homedir):
@@ -376,6 +375,10 @@ def process_pdb(h, case):
     print(tf1)
 
     fo = open(tf1, 'w')
+<<<<<<< HEAD
+=======
+    s = ""
+>>>>>>> 2ce08ca8ceb3debb3fb28ce3d17f3569d01cd164
 
     fo1 = open(tf3,'w')
 
@@ -427,9 +430,15 @@ def process_pdb(h, case):
 
             #    ptag[np], pno[np], pnm[np], presnm[np], pchain[np], presno[np], px[np], py[np], pz[np], ptail[np]))
 
+<<<<<<< HEAD
             s = presnm[np]+" "+str(presno[np])+" "+ pnm[np]+" "+str(px[np])+" "+str(py[np])+" "+str(pz[np])+" "+r[pele[np]]+" "+pat[np] +'\n'
 
             fo.write(s)
+=======
+            s += presnm[np]+" "+str(presno[np])+" "+ pnm[np]+" "+str(px[np])+" "+str(py[np])+" "+str(pz[np])+" "+r[pele[np]]+" "+pat[np] +'\n'
+
+            #fo.write(s)
+>>>>>>> 2ce08ca8ceb3debb3fb28ce3d17f3569d01cd164
 
             np+=1
 
@@ -511,7 +520,11 @@ def process_pdb(h, case):
 
             lele.append(i[76:78])
 
+<<<<<<< HEAD
             s = lresnm[nl] + " " + str(lresno[nl]) + " " + lnm[nl] + " " + str(lx[nl]) + " " + str(
+=======
+            s1 = lresnm[nl] + " " + str(lresno[nl]) + " " + lnm[nl] + " " + str(lx[nl]) + " " + str(
+>>>>>>> 2ce08ca8ceb3debb3fb28ce3d17f3569d01cd164
 
                 ly[nl]) + " " + str(lz[nl]) + " " + '\n'  # atom type assignment2022# 5: MET#
 
@@ -532,12 +545,21 @@ def process_pdb(h, case):
     # fo.write("END\n")
 
     print(np, nl)
+<<<<<<< HEAD
 
+=======
+    fo.seek(0)
+    s = str(np) + "\n" + s
+    fo.write(s)
+>>>>>>> 2ce08ca8ceb3debb3fb28ce3d17f3569d01cd164
     fo.close()
 
     fo1.close()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2ce08ca8ceb3debb3fb28ce3d17f3569d01cd164
 def LISE():
 
     print("LISE:")
@@ -560,9 +582,13 @@ def LISE():
 
     make_dir(homedir)
 
+<<<<<<< HEAD
     case = ""
     if len(sys.argv) > 1:
         case = sys.argv[1]  # case = input('Please input a pdb id: ')
+=======
+    case = '1a6w'  # case = input('Please input a pdb id: ')
+>>>>>>> 2ce08ca8ceb3debb3fb28ce3d17f3569d01cd164
 
     x = re.match('^\d\w{3}$', case)
 
@@ -577,5 +603,10 @@ def LISE():
         process_pdb(homedir, case)
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     LISE()
+=======
+
+LISE()
+>>>>>>> 2ce08ca8ceb3debb3fb28ce3d17f3569d01cd164

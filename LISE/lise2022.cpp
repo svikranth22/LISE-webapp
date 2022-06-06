@@ -54,6 +54,7 @@ int main()
 		ifs.close();
 	}
 	cout << nl << " lines\n";
+	//return EXIT_SUCCESS;
 	vector<float> hx; //x coordinates
 	vector<float> hy; //y coordinates
 	vector<float> hz; //z coordinates
@@ -574,7 +575,6 @@ int main()
 		if (il < xmn) il = xmn;
 		if (jl < ymn) jl = ymn;
 		if (kl < zmn) kl = zmn;
-		//cout << lx[l] << il << " " << iu << " " << st << endl;
 		for (int a = il; a <= iu; a++)
 		{
 			for (int b = jl; b <= ju; b++)

@@ -5,10 +5,18 @@
 # open
 
 import os
+<<<<<<< HEAD
 import sys
 import re
 
 
+=======
+
+import re
+
+
+
+>>>>>>> 2ce08ca8ceb3debb3fb28ce3d17f3569d01cd164
 def make_dir(homedir):
 
     dir1 = os.path.join(homedir, "results")
@@ -532,11 +540,12 @@ def process_pdb(h, case):
     # fo.write("END\n")
 
     print(np, nl)
-
+    fo.seek(0)
+    s = "Number of pro atoms: " + str(np) + "\n"
+    fo.write(s)
     fo.close()
 
     fo1.close()
-
 
 def LISE():
 
