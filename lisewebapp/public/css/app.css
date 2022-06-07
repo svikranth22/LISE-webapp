@@ -1,0 +1,15 @@
+#molecule-box {
+    margin: 150px 150px 150px 150px;
+    border: 10px;
+    border-color: black;
+}
+
+body {
+    background-color: lightgrey;
+}
+
+#title {
+    text-align: left;
+    text-transform: uppercase;
+    color:black
+}

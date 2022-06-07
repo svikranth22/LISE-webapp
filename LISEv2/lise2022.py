@@ -10,7 +10,6 @@ import sys
 import os
 import re
 import getopt
-from telnetlib import STATUS
 
 
 HOME_DIR = os.getcwd()
@@ -21,6 +20,7 @@ TMP_DIR = os.path.join(HOME_DIR, "tmp")
 
 PDB_id = ''
 PDB_path = ''
+INFO_path = ''
 IPRO_path = ''
 ILIG_path = ''
 RESULTS_path = ''
@@ -341,6 +341,10 @@ def main(argv):
                 ILIG_path = os.path.join(TMP_DIR, PDB_id + "_ilig.txt")
                 RESULTS_path = os.path.join(RESULTS_DIR, PDB_id + "_top10.pdb")
                 DETAILS_path = os.path.join(PDB_DIR, PDB_id + "_top3.pdb")
+
+                os.mkfifo(PDB_path, 0o666)
+                os.mkfifo(IPRO_path, 0o666)
+                os.mkfifo(ILIG_path, 0o666)
 
                 if is_saved():
                     print("IPRO_PATH:", IPRO_path)
