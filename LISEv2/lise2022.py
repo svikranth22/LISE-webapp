@@ -10,6 +10,7 @@ import sys
 import os
 import re
 import getopt
+import urllib.request
 
 
 HOME_DIR = os.getcwd()
@@ -17,6 +18,7 @@ PDB_DIR = os.path.join(HOME_DIR, "PDB")
 RESULTS_DIR = os.path.join(HOME_DIR, "results")
 DETAILS_DIR = os.path.join(HOME_DIR, "details")
 TMP_DIR = os.path.join(HOME_DIR, "tmp")
+RCSB_URL = "https://files.rcsb.org/view/"
 
 PDB_id = ''
 PDB_path = ''
@@ -171,8 +173,6 @@ def ata(nm, aa,ele):
 
     return at
 
-
-
 def process_pdb():
 
     pdbfile = open(PDB_path, 'r')
@@ -304,6 +304,23 @@ def print_usage():
     print('\tlise -i <PDBid>')
     print('\tlise -f <PDBfilepath>')
 
+def download_pdb(pdb_id):
+    file_name = pdb_id.upper()+'.pdb' #.upper: make string upper cases
+    source = RCSB_URL + file_name
+    path = os.path.join(PDB_DIR, file_name)
+
+    if (os.path.exists(path)):
+        print("File already in folder")
+        return False
+    else:
+        try:
+            urllib.request.urlretrieve(source, path)
+            return True
+        except(urllib.error.HTTPError or TimeoutError or urllib.error.URLError):
+            print('Error: cannot download ', file_name, )
+            return False
+
+
 def main(argv):
     
     if len(argv) == 0:
@@ -353,6 +370,10 @@ def main(argv):
                     print("IPRO_ATOMS:", num_ipro)
                     print ("ILIG_ATOMS:", num_ilig)
                     sys.exit(1)
+
+                else:
+                    if download_pdb(PDB_id):
+                        process_pdb()
             else:
                 print('Error: Invalid PDB ID', file = sys.stderr)
                 sys.exit(2)
@@ -360,4 +381,4 @@ def main(argv):
         elif opt in ("-f", "--filepath"):
             PDB_path = arg
 
-main(sys.argv[1:])
+#main(sys.argv[1:])
